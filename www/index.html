@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <title> counter </title>
+        <style>
+            html,body {
+                margin:0px;
+                padding:0px;
+                height:100%;
+                width:100%;
+            }
+            
+            body {
+                background-color: #33CCEE;
+                margin: 0px;
+                padding: 0px;
+            }
+            #thecounter {
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: auto;
+                margin-bottom: auto;
+                font-size: 600px;
+                font-family: "Arial";
+                padding: 0px;
+                padding-top: 20px;
+                display: block;
+                color: #444;
+                text-align: center;
+               
+            }
+            
+            p {
+                padding: 0px;
+                margin: 0px;
+            }
+        </style>
+    </head>
+<body>
+    <div id="thecounter">
+        <p>Connecting...</p>
+    </div>
+    <script>
+        function g() {
+            setTimeout(g,500);
+            $.getJSON('http://77.80.217.32:5000/?callback=?', null , function(data) {
+                $('#thecounter').html('<p>' + data.count + '</p>');
+            },function(){
+                $('#thecounter').html('<p>error</p>');
+            });
+        }
+
+        $(document).ready(function(){
+           // $('#thecounter').html('<p>1</p>');
+            g();
+        });
+    </script>
+</body>
+</html>
